@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # Checkout branch
-    - name: Checkout branch
-      uses: actions/checkout@v4
+      # Checkout branch
+      - name: Checkout branch
+        uses: actions/checkout@v4
 
-    # Commit the source files to GitHub Pages branch
-    - name: Commit files to GitHub Pages branch
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        folder: src
+      # Commit the source files to GitHub Pages branch
+      - name: Commit files to GitHub Pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: src
