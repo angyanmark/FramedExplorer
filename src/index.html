@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Framed Explorer</title>
+</head>
+
+<body>
+  <label for="day">day</label>
+  <input type="number" id="day" min="1" value="day" onchange="dayChanged()" />
+  <label for="frame">frame</label>
+  <input type="number" id="frame" min="1" max="6" value="frame" onchange="frameChanged()" />
+  <span style="margin-left: 132px;">change day: ← →</span>
+  <span style="margin-left: 22px;">change frame: ↑ ↓</span>
+  <span style="margin-left: 132px;">An explorer for <a href="https://framed.wtf/" target="_blank">Framed</a>.</span>
+  <br>
+  <img id="image-jpg" src="" alt="" style="width: 967px; margin-top: 8px;" />
+  <br>
+  <img id="image-jpeg" src="" alt="" style="width: 967px; margin-top: -12px;" />
+</body>
+
+<script>
+  day;
+  frame;
+
+  function reset() {
+    day = 1;
+    frame = 1;
+  }
+
+  function dayChanged() {
+    day = event.target.value;
+    frame = 1;
+    render();
+  }
+
+  function frameChanged() {
+    frame = event.target.value;
+    render();
+  }
+
+  document.onkeydown = (e) => {
+    switch (e.keyCode) {
+      case 37: // left
+        if (day !== 1) {
+          day--;
+          frame = 1;
+          render();
+        }
+        break;
+      case 38: // up
+        if (frame !== 6) {
+          frame++;
+          render();
+        }
+        break;
+      case 39: // right
+        day++;
+        frame = 1;
+        render();
+        break;
+      case 40: // down
+        if (frame !== 1) {
+          frame--;
+          render();
+        }
+        break;
+      case 46: // del
+        reset();
+        render();
+        break;
+    }
+  }
+
+  function render() {
+    document.querySelector('#day').value = day;
+    document.querySelector('#frame').value = frame;
+    document.querySelector('#image-jpg').src = `https://framed.wtf/images/${day}/00${frame}.jpg`;
+    document.querySelector('#image-jpeg').src = `https://framed.wtf/images/${day}/00${frame}.jpeg`;
+  }
+
+  reset();
+  render();
+</script>
+
+</html>

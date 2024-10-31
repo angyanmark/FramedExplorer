@@ -1,2 +1,3 @@
-# FramedExplorer
-An explorer for Framed.
+# Framed Explorer
+
+An explorer for [Framed](https://framed.wtf/).
